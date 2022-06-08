@@ -14,13 +14,16 @@ Potential Extensions:
 ## Installation
 
 Using npm:
-```npm install 
+```javascript
+npm install 
 ```
 
 ## Usage
 Launch React App:
-```npm start
+```javascript
+npm start
 ```
 Start Express Server:
-```npm start
+```javascript
+npm start
 ```
