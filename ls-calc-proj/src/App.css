@@ -1,0 +1,73 @@
+h1 {
+  text-align: center;
+  margin-top: 25vh;
+}
+.header {
+  text-align: center;
+  margin-top: -1vh;
+}
+
+.App {
+  padding-top: 3vh;
+  text-align: center;
+  column-gap: 35px;
+  margin-left: 10vw;
+}
+
+.container {
+  width: 15vw;
+  border-radius: 2%;
+  height: 25vh;
+}
+
+.btns {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: none;
+  font-size: large;
+  font-weight: 100;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.btns:hover {
+  background-color: rgb(231, 225, 240);
+}
+
+#result {
+  display: flex;
+  width: 100%;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 30px;
+
+}
+
+#clear:hover {
+  background-color: rgb(255, 214, 214);
+}
+
+#logo {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+}
+
+td {
+  border-radius: 3px;
+}
+
+.side-content {
+  display: block;
+  text-align: start;
+  width: 36vw;
+}
+
+p {
+  margin-top: -12px;
+}
+
+.p-break {
+  margin-top: 10px;
+}
