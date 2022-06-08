@@ -51,7 +51,7 @@ function App() {
   //Table with a series of buttons and a display screen
   return (
     <>
-      <h1 >Simple Single Digit Calculator</h1>
+      <h1>Single Digit Calculator</h1>
       <p className="header">by Jan Bock</p>
       <div className="App">
         <table className="container" border="1">
