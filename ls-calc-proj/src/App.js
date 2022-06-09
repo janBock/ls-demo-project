@@ -42,8 +42,13 @@ function App() {
     //Send state data to backend; returns a result which is stored in the result state
     await sendData(numbers, operator).then(
       await getResult().then((data) => {
-        setResult(data);
-        console.log("**THE RESULT TO BE DISPLAYED IS: ", result);
+        if (Number.isInteger(data)) {
+          setResult(data);
+          console.log("**THE RESULT TO BE DISPLAYED IS: ", result);
+        } else {
+          setResult("Undefined")
+          console.log("Sorry we cant show this calculation :(")
+        }
       })
     );
   };
