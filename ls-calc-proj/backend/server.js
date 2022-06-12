@@ -1,11 +1,11 @@
-const express = require('express')
+import express from 'express';
 const app = express()
 app.use(express.json());
-const cors = require("cors");
+import cors from "cors";
 app.use(cors());
 const port = 5000
 
-const CalcMath = require("./CalcMath.js");
+import CalcMath from "./CalcMath.js";
 const calcMath = new CalcMath();
 
 app.get('/getResult', (req, res) => {
@@ -15,14 +15,16 @@ app.get('/getResult', (req, res) => {
 
 app.patch('/sendData', (req, res) => {
     const receivedData = req.body; //in the form of an array: [[numbers], operator]
-    console.log(receivedData);
+    console.log(receivedData)
+    console.log(receivedData.dataToSend);
+    console.log(typeof receivedData.dataToSend)
      
     if (!req.body) {
         res.status(400).send("400 - bad request");
         return;
       }
 
-    const result = calcMath.handleMath(receivedData);
+    const result = calcMath.handleMath(receivedData.dataToSend);
     let body;
 
     //HERE for sending the response back

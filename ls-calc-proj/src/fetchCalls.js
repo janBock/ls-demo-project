@@ -25,7 +25,7 @@ async function sendData(dataToSend) {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(dataToSend),
+    body: JSON.stringify({dataToSend: dataToSend}),
   }).then(
     (response) => {
       if (response.status !== 200) {
@@ -34,7 +34,7 @@ async function sendData(dataToSend) {
       }
       response.text().then((data) => {
         fetchedResult = JSON.parse(data).body.data;
-        console.log("fetchedResult = ", fetchedResult);
+        console.log(fetchedResult)
       });
     },
     (error) => {
