@@ -7,6 +7,7 @@ function App() {
   const [numbers, setNumbers] = useState([]);
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("0");
+  const [tempScreenVal, setTempScreenVal] = useState("Try me!");
 
   const handleButtonClick = (event) => {
     //If an operator is clicked; not including C (see clear function below)
@@ -17,9 +18,11 @@ function App() {
 
     //If numbers are clicked:
     if (Number.isInteger(parseInt(event.target.value))) {
+      setTempScreenVal(event.target.value);
+      console.log("tempscreenval was: ", tempScreenVal);
+
       if (numbers.length === 0) {
         setNumbers([parseInt(event.target.value)]);
-
         //if there are under 2 numbers currently stored
       } else if (numbers.length < 2) {
         setNumbers(numbers.concat(parseInt(event.target.value)));
@@ -33,6 +36,7 @@ function App() {
     setNumbers([]);
     setOperator("");
     setResult("0");
+    setTempScreenVal("0")
   };
 
   const calculate = async () => {
@@ -53,6 +57,15 @@ function App() {
     );
   };
 
+
+  const updateScreen = () => {
+    if (result === "0") {
+      return tempScreenVal;
+    } else if (result !== "0") {
+      return result;
+    }
+  }
+
   //Table with a series of buttons and a display screen
   return (
     <>
@@ -62,7 +75,7 @@ function App() {
         <table className="container" border="1">
           <tr>
             <td colSpan="3">
-              <div id="result">{result}</div>
+              <div id="result">{updateScreen()}</div>
             </td>
             <td>
               <input
