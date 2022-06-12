@@ -45,10 +45,12 @@ function App() {
 
 
   const updateScreen = () => {
-    if (result === "0") {
+    if (result === "0") { //initial state "0"
       return tempScreenVal;
     } else if (result !== "0") {
       return result;
+    } else if (result === "zero") {
+      return "0";
     }
   }
 
