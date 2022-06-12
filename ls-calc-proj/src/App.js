@@ -35,6 +35,8 @@ function App() {
         if (Number.isInteger(data)) {
           setResult(data);
           console.log("**THE RESULT TO BE DISPLAYED IS: ", result);
+        } else if (isDecimal(data)) {
+          setResult(data);
         } else {
           setResult("Undefined")
           console.log("Sorry we cant show this calculation :(")
@@ -43,6 +45,11 @@ function App() {
     );
   };
 
+  const isDecimal = (n) => {
+    let result = n - Math.floor(n) !== 0;
+    if (result) return true;
+    else return false;
+  }
 
   const updateScreen = () => {
     if (result === "0") { //initial state "0"
