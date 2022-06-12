@@ -4,47 +4,33 @@ import { sendData, getResult } from "./fetchCalls.js";
 
 function App() {
   //set the state hooks of the persisting data
-  const [numbers, setNumbers] = useState([]);
-  const [operator, setOperator] = useState("");
+  const [dataToSend, setDataToSend] = useState("");  
   const [result, setResult] = useState("0");
   const [tempScreenVal, setTempScreenVal] = useState("Try me!");
 
   const handleButtonClick = (event) => {
-    //If an operator is clicked; not including C (see clear function below)
-    if (isNaN(event.target.value)) {
-      setOperator(event.target.value);
-      console.log(operator);
-    }
-
     //If numbers are clicked:
     if (Number.isInteger(parseInt(event.target.value))) {
+      //Set value for dynamic screen update (UX)
       setTempScreenVal(event.target.value);
-      console.log("tempscreenval was: ", tempScreenVal);
-
-      if (numbers.length === 0) {
-        setNumbers([parseInt(event.target.value)]);
-        //if there are under 2 numbers currently stored
-      } else if (numbers.length < 2) {
-        setNumbers(numbers.concat(parseInt(event.target.value)));
-        console.log(typeof parseInt(event.target.value));
       }
-    }
+
+    //Add button value (including operator) to the dataToSend string
+    setDataToSend(prevState => (prevState.concat(event.target.value)));
   };
 
   //if C is pressed, the stored state is wiped
   const clear = () => {
-    setNumbers([]);
-    setOperator("");
+    setDataToSend("");
     setResult("0");
     setTempScreenVal("0")
   };
 
   const calculate = async () => {
-    //Check data being sent
-    console.log("final numbers were, ", numbers);
-
-    //Send state data to backend; returns a result which is stored in the result state
-    await sendData(numbers, operator).then(
+    console.log("final data to send when = was pressed is: ", dataToSend);
+    
+    //Send dataToSend to backend; returns a result which is stored in the result state
+    await sendData(dataToSend).then(
       await getResult().then((data) => {
         if (Number.isInteger(data)) {
           setResult(data);

@@ -5,31 +5,28 @@ let fetchedResult = 0;
 
 //return the current stored result in the backend
 async function getResult() {
-    const response = await fetch(URL + "/getResult", {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log("getResult data was: ", data)
-    return data;
-  }
+  const response = await fetch(URL + "/getResult", {
+    method: "GET",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  console.log("getResult data was: ", data);
+  return data;
+}
 
 //Send data to backend to perform the math operations
-  async function sendData(numbers, operator) {
-      const dataToSend = [numbers, operator];
-      //console.log("dataToSend is equal to: ", dataToSend)
+async function sendData(dataToSend) {
   await fetch(URL + "/sendData", {
-    method: "PATCH", 
+    method: "PATCH",
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(dataToSend),
-  }) 
-  .then(
+  }).then(
     (response) => {
       if (response.status !== 200) {
         console.log(`Something went wrong: http-status=${response.status}`);
@@ -38,7 +35,6 @@ async function getResult() {
       response.text().then((data) => {
         fetchedResult = JSON.parse(data).body.data;
         console.log("fetchedResult = ", fetchedResult);
-        console.log(`fetchCalls sendData is: ${data}`); 
       });
     },
     (error) => {
@@ -47,4 +43,4 @@ async function getResult() {
   );
 }
 
-export {sendData, getResult};
+export { sendData, getResult };
